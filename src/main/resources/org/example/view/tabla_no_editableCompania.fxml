@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.tabla_no_editable_Compania_Controller">
+
+
+    <MenuBar>
+        <menus>
+            <Menu mnemonicParsing="false" text="options">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close app" />
+                    <MenuItem mnemonicParsing="false" onAction="#goToIntermedio" text="go back" />
+                    <MenuItem mnemonicParsing="false" onAction="#refresh" text="refresh" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <Menu mnemonicParsing="false" text="Open">
+                        <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableGeneral" text="Tabla General"/>
+                        <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableTropas" text="Tabla Tropas"/>
+                    </Menu>
+
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <children>
+        <Label text="Compañia" />
+      <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="columnDNI" prefWidth="87.0" text="DNI" />
+          <TableColumn fx:id="columnName" prefWidth="112.0" text="NOMBRE" />
+        </columns>
+      </TableView>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
