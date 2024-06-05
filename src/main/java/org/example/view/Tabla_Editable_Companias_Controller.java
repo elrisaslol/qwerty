@@ -21,11 +21,15 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
    private TableView<Company> tableView;
 
    @FXML
-   private TableColumn<Company,String> columnDNI;
+   private TableColumn<Company,String> columnID;
    @FXML
    private TableColumn<Company,String> columnName;
 
-   private ObservableList<Company> companies;
+    @FXML
+    private TableColumn<Company,String> columnID_General;
+
+
+    private ObservableList<Company> companies;
 
     @Override
     public void onOpen(Object input) {
@@ -50,8 +54,10 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setEditable(false);
-        columnDNI.setCellValueFactory(company -> new SimpleStringProperty(company.getValue().getId()));
+        columnID.setCellValueFactory(company -> new SimpleStringProperty(company.getValue().getId()));
         columnName.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getName()));
+        columnID_General.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getAuthor().getId()));
+
         /*columnName.setCellFactory(TextFieldTableCell.forTableColumn());
        columnName.setOnEditCommit(event -> {
             if(event.getNewValue()== event.getOldValue()){
@@ -91,14 +97,15 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
         App.currentController.changeScene(Scenes.INTERMEDIO,null);
     }
     @FXML
-    private void agregarGeneral() throws IOException {
-        App.currentController.openModal(Scenes.NEWAUTHOR,"Agregando un autor...",this,null);
+    private void agregarCompania() throws IOException {
+        App.currentController.openModal(Scenes.ADDCOMPANIA,"Agregando una Compania...",this,null);
     }
     @FXML
-    private void borrarGeneral() throws IOException {
+    private void borrarCompania() throws IOException {
+        App.currentController.openModal(Scenes.DELETECOMPANIA,"Borrar una Compania...",this,null);
     }
     @FXML
-    private void modificarGeneral() throws IOException {
+    private void modificarCompania() throws IOException {
     }
     @FXML
     private void abrirTablaEditableGeneral() throws IOException {

@@ -66,7 +66,7 @@ public class CompanyDAO implements DAO<Company,String> {
     }
 
     @Override
-    public Company delete(Company entity) {
+    public void delete(Company entity) {
         if(entity!=null) {
             try (PreparedStatement pst = conn.prepareStatement(DELETE)) {
                 pst.setString(1, entity.getId());
@@ -76,7 +76,6 @@ public class CompanyDAO implements DAO<Company,String> {
                 entity = null;
             }
         }
-        return entity;
     }
 
     @Override

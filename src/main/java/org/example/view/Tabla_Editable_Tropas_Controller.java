@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.example.App;
-import org.example.model.dao.GeneralDAO;
-import org.example.model.entity.General;
+import org.example.model.dao.UnitDAO;
+import org.example.model.entity.Unit;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,22 +18,24 @@ import java.util.ResourceBundle;
 
 public class Tabla_Editable_Tropas_Controller extends Controller implements Initializable {
    @FXML
-   private TableView<General> tableView;
-
+   private TableView<Unit> tableView;
+    @FXML
+    private TableColumn<Unit,String> columnID;
    @FXML
-   private TableColumn<General,String> columnDNI;
-   @FXML
-   private TableColumn<General,String> columnName;
+   private TableColumn<Unit,String> columnName;
+    @FXML
+    private TableColumn<Unit,String> columnID_Company;
 
-   private ObservableList<General> generals;
+
+    private ObservableList<Unit> units;
 
     @Override
     public void onOpen(Object input) {
             //Al inicio
-        List<General> generals = GeneralDAO.build().findAll();
-        System.out.println(generals);
-        this.generals = FXCollections.observableArrayList(generals);
-        tableView.setItems(this.generals);
+        List<Unit> units = UnitDAO.build().findAll();
+        System.out.println(units);
+        this.units = FXCollections.observableArrayList(units);
+        tableView.setItems(this.units);
     }
 
     @Override
@@ -41,17 +43,19 @@ public class Tabla_Editable_Tropas_Controller extends Controller implements Init
 
     }
 
-    public void saveAuthor(General newGeneral){
-        GeneralDAO.build().save(newGeneral);
-        this.generals.add(newGeneral);
+    public void saveAuthor(Unit newUnit){
+        UnitDAO.build().save(newUnit);
+        this.units.add(newUnit);
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setEditable(false);
-        columnDNI.setCellValueFactory(author-> new SimpleStringProperty(author.getValue().getId()));
-        columnName.setCellValueFactory(author-> new SimpleStringProperty(author.getValue().getName()));
+        columnID.setCellValueFactory(unit -> new SimpleStringProperty(unit.getValue().getId()));
+        columnName.setCellValueFactory(unit -> new SimpleStringProperty(unit.getValue().getName()));
+        columnID_Company.setCellValueFactory(unit -> new SimpleStringProperty(unit.getValue().getCompany().getId()));
+
         /*columnName.setCellFactory(TextFieldTableCell.forTableColumn());
        columnName.setOnEditCommit(event -> {
             if(event.getNewValue()== event.getOldValue()){
@@ -91,7 +95,7 @@ public class Tabla_Editable_Tropas_Controller extends Controller implements Init
     }
     @FXML
     private void agregarGeneral() throws IOException {
-        App.currentController.openModal(Scenes.NEWAUTHOR,"Agregando un autor...",this,null);
+        App.currentController.openModal(Scenes.ADDTROPA,"Agregando un autor...",this,null);
     }
     @FXML
     private void borrarGeneral() throws IOException {

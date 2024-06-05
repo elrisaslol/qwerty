@@ -39,8 +39,9 @@
         <Label text="Tropas" />
       <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="columnDNI" prefWidth="87.0" text="ID" />
+          <TableColumn fx:id="columnID" prefWidth="87.0" text="ID" />
           <TableColumn fx:id="columnName" prefWidth="112.0" text="NOMBRE" />
+            <TableColumn fx:id="columnID_Company" prefWidth="87.0" text="ID COMPAÑIA" />
         </columns>
       </TableView>
     </children>

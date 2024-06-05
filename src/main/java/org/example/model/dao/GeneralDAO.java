@@ -20,7 +20,7 @@ public class GeneralDAO implements DAO<General,String> {
     private final static String FINDALL="SELECT a.id,a.name FROM general AS a";
     private final static String FINDALLNONEDITABLE="SELECT a.id,a.name FROM generalnoeditable AS a";
     private final static String FINDBYDNI="SELECT a.id,a.name FROM general AS a WHERE a.id=?";
-    private final static String DELETE="DELETE FROM general AS a WHERE a.id=?";
+    private final static String DELETE="DELETE FROM general  WHERE id=?";
 
     @Override
     public General save(General entity) {
@@ -79,13 +79,11 @@ public class GeneralDAO implements DAO<General,String> {
     }
 
     @Override
-    public General delete(General entity) throws SQLException {
-        if(entity==null || entity.getId()==null) return entity;
+    public void delete(General entity) throws SQLException {
         try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(DELETE)) {
-            pst.setString(1,entity.getId());
+            pst.setString(1, entity.getId());
             pst.executeUpdate();
         }
-        return entity;
     }
 
     @Override
@@ -97,7 +95,7 @@ public class GeneralDAO implements DAO<General,String> {
             pst.setString(1,key);
             ResultSet res = pst.executeQuery();
             if(res.next()){
-                //result.setId(res.getString("dni"));
+                result.setId(res.getString("id"));
                 result.setName(res.getString("name"));
                 //Lazy
                 //BookDAO bDAO = new BookDAO();
@@ -172,3 +170,5 @@ class GeneralLazy extends General {
         return super.getBooks();
  }
 }
+
+

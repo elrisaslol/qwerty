@@ -11,8 +11,12 @@ public enum Scenes {
     TABLANOEDITABLECOMPANIA("view/tabla_no_editableCompania.fxml"),
     TABLAEDITABLETROPAS("view/tabla_editableTropas.fxml"),
     TABLANOEDITABLETROPAS("view/tabla_no_editableTropas.fxml"),
-    NEWAUTHOR("view/formAuthor.fxml");
-
+    ADDGENERAL("view/addGeneral.fxml"),
+    DELETEGENERAL("view/deltGeneral.fxml"),
+    ADDCOMPANIA("view/addCompania.fxml"),
+    DELETECOMPANIA("view/deltCompania.fxml"),
+    ADDTROPA("view/addTropa.fxml"),
+    DELETETROPA("view/deltTropa.fxml");
 
     private String url;
     Scenes(String url){

@@ -13,6 +13,7 @@ import org.example.model.entity.General;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,6 +45,10 @@ public class Tabla_Editable_General_Controller extends Controller implements Ini
     public void saveAuthor(General newGeneral){
         GeneralDAO.build().save(newGeneral);
         this.generals.add(newGeneral);
+
+    }
+    public void deleteGeneral(General newGeneral) throws SQLException {
+        GeneralDAO.build().delete(newGeneral);
 
     }
 
@@ -92,10 +97,13 @@ public class Tabla_Editable_General_Controller extends Controller implements Ini
     }
     @FXML
     private void agregarGeneral() throws IOException {
-        App.currentController.openModal(Scenes.NEWAUTHOR,"Agregando un autor...",this,null);
+        App.currentController.openModal(Scenes.ADDGENERAL,"Agregando un autor...",this,null);
+        refresh();
     }
     @FXML
     private void borrarGeneral() throws IOException {
+        App.currentController.openModal(Scenes.DELETEGENERAL,"Eliminar un general...",this,null);
+        refresh();
     }
     @FXML
     private void modificarGeneral() throws IOException {
