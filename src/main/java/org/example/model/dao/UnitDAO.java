@@ -7,10 +7,7 @@ import org.example.model.entity.General;
 import org.example.model.entity.Unit;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +31,10 @@ public class UnitDAO implements DAO<Unit,String> {
         Unit result=entity;
         if(entity!=null){
             String id = entity.getId();
-            if(id !=null){
                 Unit isInDataBase = findById(id);
                 if(isInDataBase==null){
                     //INSERT
-                    try(PreparedStatement pst = conn.prepareStatement(INSERT)) {
+                    try(PreparedStatement pst = conn.prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS)) {
                         ResultSet res = pst.getGeneratedKeys();
                         if(res.next()){
                             entity.setId(res.getString(1));
@@ -59,7 +55,7 @@ public class UnitDAO implements DAO<Unit,String> {
                         e.printStackTrace();
                     }
                 }
-            }
+
         }
         return result;
     }
@@ -135,7 +131,7 @@ public class UnitDAO implements DAO<Unit,String> {
                 while(res.next()){
                     Company b = new Company();
                     b.setId(res.getString("id"));
-                    b.setAuthor(a);
+                    b.setGeneral(a);
                     b.setName(res.getString("name"));
                     result.add(b);
                 }

@@ -39,12 +39,12 @@ public class GeneralDAO implements DAO<General,String> {
                         pst.setString(1,entity.getName());
                         pst.executeUpdate();
 
-                        //save cascade -> opcional
+                        /*save cascade -> opcional
                         if(entity.getBooks()!=null) {
                             for (Company b : entity.getBooks()) {
                                 CompanyDAO.build().save(b);
                             }
-                        }
+                        }*/
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -56,7 +56,7 @@ public class GeneralDAO implements DAO<General,String> {
                 pst.setString(2,entity.getId());
                 pst.executeUpdate();
 
-                //update cascada --> opcional
+                /*update cascada --> opcional
                 if(entity.getBooks()!=null){
                     List<Company> booksBefore = CompanyDAO.build().findByAuthor(entity);
                     List<Company> booksAfter = entity.getBooks();
@@ -70,7 +70,7 @@ public class GeneralDAO implements DAO<General,String> {
                     for(Company b:booksAfter){
                         CompanyDAO.build().save(b);
                     }
-                }
+                }*/
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -162,13 +162,13 @@ public class GeneralDAO implements DAO<General,String> {
     }
 }
 class GeneralLazy extends General {
- @Override
+ /*@Override
  public List<Company> getBooks(){
         if(super.getBooks()==null){
             setBooks(CompanyDAO.build().findByAuthor(this));
         }
         return super.getBooks();
- }
+ }*/
 }
 
 

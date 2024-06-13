@@ -8,11 +8,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.example.App;
+import org.example.model.dao.CompanyDAO;
 import org.example.model.dao.UnitDAO;
+import org.example.model.entity.Company;
 import org.example.model.entity.Unit;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,9 +46,13 @@ public class Tabla_Editable_Tropas_Controller extends Controller implements Init
 
     }
 
-    public void saveAuthor(Unit newUnit){
+    public void saveTropa(Unit newUnit){
         UnitDAO.build().save(newUnit);
         this.units.add(newUnit);
+
+    }
+    public void deleteTropa(Unit auxUnit) throws SQLException {
+        UnitDAO.build().delete(auxUnit);
 
     }
 
@@ -96,9 +103,12 @@ public class Tabla_Editable_Tropas_Controller extends Controller implements Init
     @FXML
     private void agregarGeneral() throws IOException {
         App.currentController.openModal(Scenes.ADDTROPA,"Agregando un autor...",this,null);
+        refresh();
     }
     @FXML
     private void borrarGeneral() throws IOException {
+        App.currentController.openModal(Scenes.DELETETROPA,"Agregando un autor...",this,null);
+        refresh();
     }
     @FXML
     private void modificarGeneral() throws IOException {

@@ -9,10 +9,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.example.App;
 import org.example.model.dao.CompanyDAO;
+import org.example.model.dao.GeneralDAO;
 import org.example.model.entity.Company;
+import org.example.model.entity.General;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,9 +48,14 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
 
     }
 
-    public void saveAuthor(Company newCompany){
+    public void saveCompania(Company newCompany){
         CompanyDAO.build().save(newCompany);
         this.companies.add(newCompany);
+
+
+    }
+    public void deleteCompania(Company auxCompania) throws SQLException {
+        CompanyDAO.build().delete(auxCompania);
 
     }
 
@@ -56,7 +64,7 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
         tableView.setEditable(false);
         columnID.setCellValueFactory(company -> new SimpleStringProperty(company.getValue().getId()));
         columnName.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getName()));
-        columnID_General.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getAuthor().getId()));
+        columnID_General.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getGeneral().getId()));
 
         /*columnName.setCellFactory(TextFieldTableCell.forTableColumn());
        columnName.setOnEditCommit(event -> {
@@ -99,13 +107,17 @@ public class Tabla_Editable_Companias_Controller extends Controller implements I
     @FXML
     private void agregarCompania() throws IOException {
         App.currentController.openModal(Scenes.ADDCOMPANIA,"Agregando una Compania...",this,null);
+        refresh();
     }
     @FXML
     private void borrarCompania() throws IOException {
         App.currentController.openModal(Scenes.DELETECOMPANIA,"Borrar una Compania...",this,null);
+        refresh();
     }
     @FXML
     private void modificarCompania() throws IOException {
+        App.currentController.openModal(Scenes.UPDATECOMPANIA,"Borrar una Compania...",this,null);
+        refresh();
     }
     @FXML
     private void abrirTablaEditableGeneral() throws IOException {

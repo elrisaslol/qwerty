@@ -38,7 +38,7 @@ public class DeltGeneralController extends Controller implements Initializable {
 
     @FXML
     private void closeWindow(Event event) throws SQLException {
-        General general = new General(null,null);
+        General general = new General(null);
         general.setId(id.getText());
         this.controller.deleteGeneral(general);
         ((Node)(event.getSource())).getScene().getWindow().hide();

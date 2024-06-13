@@ -37,7 +37,7 @@ public class AddGeneralController extends Controller implements Initializable {
 
     @FXML
     private void closeWindow(Event event){
-        General general = new General(name.getText(),new ArrayList<>());
+        General general = new General(name.getText());
         this.controller.saveAuthor(general);
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }

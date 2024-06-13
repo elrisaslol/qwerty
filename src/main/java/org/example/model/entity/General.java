@@ -11,10 +11,10 @@ public class General {
 
 
 
-    public General(String name, List<Company> companies) {
+    public General(String name) {
         this.id = id;
         this.name = name;
-        this.companies = companies;
+
     }
 
     public General() {
@@ -36,7 +36,7 @@ public class General {
         this.name = name;
     }
 
-    public List<Company> getBooks() {
+    /*public List<Company> getBooks() {
         return companies;
     }
 
@@ -64,7 +64,7 @@ public class General {
             result = this.companies.get(i);
         }
         return result;
-    }
+    }*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,10 +80,9 @@ public class General {
 
     @Override
     public String toString() {
-        return "General{" +
+        return "General (" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", companies=" + companies +
-                '}';
+                ", nombre='" + name + '\'' +
+                ')';
     }
 }

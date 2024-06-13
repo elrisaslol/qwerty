@@ -13,8 +13,10 @@ public enum Scenes {
     TABLANOEDITABLETROPAS("view/tabla_no_editableTropas.fxml"),
     ADDGENERAL("view/addGeneral.fxml"),
     DELETEGENERAL("view/deltGeneral.fxml"),
+    UPDATEGENERAL("view/updtGeneral.fxml"),
     ADDCOMPANIA("view/addCompania.fxml"),
     DELETECOMPANIA("view/deltCompania.fxml"),
+    UPDATECOMPANIA ("view/updtCompania.fxml"),
     ADDTROPA("view/addTropa.fxml"),
     DELETETROPA("view/deltTropa.fxml");
 

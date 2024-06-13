@@ -8,7 +8,7 @@ public class Unit {
     private String name;
     private Company company;
 
-    public Unit(String id, String name, Company company) {
+    public Unit(String name, Company company) {
         this.id = id;
         this.name = name;
         this.company = company;

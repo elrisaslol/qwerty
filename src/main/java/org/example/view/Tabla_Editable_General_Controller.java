@@ -107,6 +107,8 @@ public class Tabla_Editable_General_Controller extends Controller implements Ini
     }
     @FXML
     private void modificarGeneral() throws IOException {
+        App.currentController.openModal(Scenes.UPDATEGENERAL,"Eliminar un general...",this,null);
+        refresh();
     }
     @FXML
     private void abrirTablaEditableCompanias() throws IOException {

@@ -1,6 +1,5 @@
 package org.example.model.entity;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Company {
@@ -8,12 +7,12 @@ public class Company {
     private String name;
     private General general;
 
-    private List<Unit> Units;
 
-    public Company(String id, String name, General general) {
+    public Company(String name,General general) {
         this.id = id;
         this.name = name;
         this.general = general;
+
     }
 
     public Company() {
@@ -35,13 +34,14 @@ public class Company {
         this.name = name;
     }
 
-    public General getAuthor() {
+    public General getGeneral() {
         return general;
     }
 
-    public void setAuthor(General general) {
+    public void setGeneral(General general) {
         this.general = general;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -58,9 +58,9 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Medals{" +
-                "isbn='" + id + '\'' +
-                ", title='" + name + '\'' +
+        return "Compañia " +
+                "Nº id='" + id + '\'' +
+                ", nombre='" + name + '\'' +
                 ", general=" + general.getId() +","+ general.getName()+
                 '}';
     }
