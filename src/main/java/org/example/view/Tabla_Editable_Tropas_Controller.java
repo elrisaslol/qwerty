@@ -112,6 +112,8 @@ public class Tabla_Editable_Tropas_Controller extends Controller implements Init
     }
     @FXML
     private void modificarGeneral() throws IOException {
+        App.currentController.openModal(Scenes.UPDATETROPA,"Agregando un autor...",this,null);
+        refresh();
     }
     @FXML
     private void abrirTablaEditableCompanias() throws IOException {

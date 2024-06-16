@@ -16,7 +16,7 @@ public class UnitDAO implements DAO<Unit,String> {
     private static final String FINDALLNONEDITABLE ="SELECT c.id,c.name,c.id_company FROM unitnoneditable AS c";
     private static final String FINDBYID ="SELECT c.id,c.name,c.id_company FROM unit AS c WHERE c.id=?";
     private static final String INSERT ="INSERT INTO unit (name,id_company) VALUES (?,?)";
-    private static final String UPDATE ="UPDATE unit SET name=? WHERE id=?";
+    private static final String UPDATE ="UPDATE unit SET name=?,id_company=? WHERE id=?";
     private static final String DELETE ="DELETE FROM unit WHERE id=?";
     private static final String FINDBYAUTHOR ="SELECT c.id,c.name,c.id_company FROM unit AS b WHERE c.id_company=?";
 
@@ -49,7 +49,8 @@ public class UnitDAO implements DAO<Unit,String> {
                     //UPDATE
                     try(PreparedStatement pst = conn.prepareStatement(UPDATE)) {
                         pst.setString(1,entity.getName());
-                        pst.setString(2,entity.getId());
+                        pst.setString(2,entity.getCompany().getId());
+                        pst.setString(3,entity.getId());
                         pst.executeUpdate();
                     }catch (SQLException e){
                         e.printStackTrace();

@@ -57,7 +57,7 @@ public class Unit {
     @Override
     public String toString() {
         return "Unit{" +
-                "type='" + id + '\'' +
+                " id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", company=" + company.getId() +","+ company.getName()+
                 '}';

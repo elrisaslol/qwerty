@@ -1,6 +1,7 @@
 package org.example.view;
 
 public enum Scenes {
+    FELICDADES("view/felicidades.fxml"),
     ROOT("view/layout.fxml"),
     MAINMENU("view/mainMenu.fxml"),
     CREDITOS("view/creditos.fxml"),
@@ -18,7 +19,8 @@ public enum Scenes {
     DELETECOMPANIA("view/deltCompania.fxml"),
     UPDATECOMPANIA ("view/updtCompania.fxml"),
     ADDTROPA("view/addTropa.fxml"),
-    DELETETROPA("view/deltTropa.fxml");
+    DELETETROPA("view/deltTropa.fxml"),
+    UPDATETROPA ("view/updtTropa.fxml");
 
     private String url;
     Scenes(String url){
