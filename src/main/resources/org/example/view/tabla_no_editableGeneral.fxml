@@ -26,6 +26,8 @@
                     <Menu mnemonicParsing="false" text="Open">
                         <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableCompania" text="Tabla Compañia"/>
                         <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableTropas" text="Tabla Tropas"/>
+                        <MenuItem mnemonicParsing="false" onAction="#busquedaGeneral" text="Buscar" />
+
                     </Menu>
 
                 </items>

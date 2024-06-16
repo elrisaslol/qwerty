@@ -15,6 +15,7 @@ public enum Scenes {
     ADDGENERAL("view/addGeneral.fxml"),
     DELETEGENERAL("view/deltGeneral.fxml"),
     UPDATEGENERAL("view/updtGeneral.fxml"),
+    SEARCHGENERAL("view/searchGeneral.fxml"),
     ADDCOMPANIA("view/addCompania.fxml"),
     DELETECOMPANIA("view/deltCompania.fxml"),
     UPDATECOMPANIA ("view/updtCompania.fxml"),

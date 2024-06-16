@@ -81,4 +81,9 @@ public class tabla_no_editable_General_Controller extends Controller implements 
         App.currentController.changeScene(Scenes.TABLANOEDITABLETROPAS,null);
 
     }
+    @FXML
+    private void busquedaGeneral() throws IOException {
+        App.currentController.openModal(Scenes.SEARCHGENERAL,"Eliminar un general...",this,null);
+        refresh();
+    }
 }
