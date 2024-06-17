@@ -79,7 +79,7 @@ public class tabla_no_editable_General_Controller extends Controller implements 
     @FXML
     private void goToIntermedio() throws IOException {
 
-        App.currentController.changeScene(Scenes.INTERMEDIO,null);
+         App.currentController.changeScene(Scenes.INTERMEDIO,null);
     }
 
     @FXML
