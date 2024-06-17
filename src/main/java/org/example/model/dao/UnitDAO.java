@@ -62,6 +62,11 @@ public class UnitDAO implements DAO<Unit,String> {
     }
 
     @Override
+    public void Truncate() throws SQLException {
+
+    }
+
+    @Override
     public void delete(Unit entity) {
         if(entity!=null) {
             try (PreparedStatement pst = conn.prepareStatement(DELETE)) {

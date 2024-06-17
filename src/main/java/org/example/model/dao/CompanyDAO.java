@@ -62,6 +62,11 @@ public class CompanyDAO implements DAO<Company,String> {
     }
 
     @Override
+    public void Truncate() throws SQLException {
+
+    }
+
+    @Override
     public void delete(Company entity) {
         if(entity!=null) {
             try (PreparedStatement pst = conn.prepareStatement(DELETE)) {

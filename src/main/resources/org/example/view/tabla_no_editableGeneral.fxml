@@ -26,9 +26,8 @@
                     <Menu mnemonicParsing="false" text="Open">
                         <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableCompania" text="Tabla Compañia"/>
                         <MenuItem mnemonicParsing="false" onAction="#goToTablaNoEditableTropas" text="Tabla Tropas"/>
-                        <MenuItem mnemonicParsing="false" onAction="#busquedaGeneral" text="Buscar" />
-
                     </Menu>
+                    <MenuItem mnemonicParsing="false" onAction="#busquedaGeneral" text="Buscar" />
 
                 </items>
             </Menu>
@@ -39,8 +38,10 @@
         <Label text="General" />
       <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="columnDNI" prefWidth="87.0" text="DNI" />
+          <TableColumn fx:id="columnID" prefWidth="87.0" text="ID de compañia" />
           <TableColumn fx:id="columnName" prefWidth="112.0" text="NOMBRE" />
+            <TableColumn fx:id="columnID_General" prefWidth="112.0" text="ID de general" />
+
         </columns>
       </TableView>
     </children>

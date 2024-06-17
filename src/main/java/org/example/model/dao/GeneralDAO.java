@@ -3,8 +3,8 @@ package org.example.model.dao;
 
 
 import org.example.model.connection.ConnectionMariaDB;
-import org.example.model.entity.General;
 import org.example.model.entity.Company;
+import org.example.model.entity.General;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeneralDAO implements DAO<General,String> {
+    private final static String TRUNCATE="TRUNCATE TABLE generalnoeditable";
+    private final static String FINDCOMPANYBYFK="SELECT * from company Where id_general = ?";
     private final static String INSERT="INSERT INTO general (name) VALUES (?)";
+    private final static String INSERTQUERRY="INSERT INTO generalnoeditable (id,name,id_general) VALUES (?,?,?)";
     private final static String UPDATE="UPDATE general SET name=? WHERE id=?";
-    private final static String FINDALL="SELECT a.id,a.name FROM general AS a";
+    private final static String FINDALL="SELECT a.id, a.name FROM general AS a";
     private final static String FINDALLNONEDITABLE="SELECT a.id,a.name FROM generalnoeditable AS a";
     private final static String FINDBYDNI="SELECT a.id,a.name FROM general AS a WHERE a.id=?";
     private final static String DELETE="DELETE FROM general  WHERE id=?";
@@ -78,6 +81,27 @@ public class GeneralDAO implements DAO<General,String> {
         return result;
     }
 
+    public General saveQuerry(General entity) {
+        General result = entity;
+        if (entity == null) return result;
+
+            //INSERT
+        try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(INSERTQUERRY)) {
+            pst.setString(1,entity.getName());
+            pst.setString(2,entity.getId());
+            pst.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return result;
+    }
+   @Override
+    public void Truncate() throws SQLException {
+        try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(TRUNCATE)) {
+            pst.executeUpdate();
+        }
+    }
     @Override
     public void delete(General entity) throws SQLException {
         try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(DELETE)) {
@@ -108,6 +132,27 @@ public class GeneralDAO implements DAO<General,String> {
         return result;
     }
 
+    public List<Company> findCompanybyFK(String Key) {
+        List<Company> result = new ArrayList<>();
+        if(Key==null) return result;
+
+        try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDALL)) {
+            pst.setString(1,Key);
+
+            ResultSet res = pst.executeQuery();
+            while(res.next()){
+                Company a = new Company();
+                a.setId(res.getString("id"));
+                a.setName(res.getString("name"));
+                a.setGeneral(findById(Key));
+                result.add(a);
+            }
+            res.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     @Override
     public List<General> findAll() {
         List<General> result = new ArrayList<>();

@@ -8,51 +8,62 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.example.App;
+import org.example.model.dao.CompanyDAO;
 import org.example.model.dao.GeneralDAO;
+import org.example.model.entity.Company;
 import org.example.model.entity.General;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class tabla_no_editable_General_Controller extends Controller implements Initializable {
    @FXML
-   private TableView<General> tableView;
+   private TableView<Company> tableView;
 
    @FXML
-   private TableColumn<General,String> columnDNI;
+   private TableColumn<Company,String> columnID;
    @FXML
-   private TableColumn<General,String> columnName;
+   private TableColumn<Company,String> columnName;
+   @FXML
+   private TableColumn<Company,String> columnID_General;
 
-   private ObservableList<General> generals;
+
+   private ObservableList<Company> companies;
 
     @Override
-    public void onOpen(Object input) {
+    public void onOpen(Object input) throws IOException {
             //Al inicio
-        List<General> generals = GeneralDAO.build().findAllNonEditable();
-        System.out.println(generals);
-        this.generals = FXCollections.observableArrayList(generals);
-        tableView.setItems(this.generals);
+
     }
 
     @Override
     public void onClose(Object output) {
 
     }
-
-    public void saveAuthor(General newGeneral){
-        GeneralDAO.build().save(newGeneral);
-        this.generals.add(newGeneral);
+    public void searchGeneral(String key) throws SQLException {
+        List<Company> auxCopanias;
+        GeneralDAO.build().Truncate();
+        auxCopanias= GeneralDAO.build().findCompanybyFK(key);
+        this.companies = FXCollections.observableArrayList(auxCopanias);
+        tableView.setItems(this.companies);
 
     }
+
+  /*  public void saveQuerrry(General newGeneral){
+        GeneralDAO.build().saveQuerry(newGeneral);
+        this.generals.add(newGeneral);
+
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setEditable(false);
-        columnDNI.setCellValueFactory(author-> new SimpleStringProperty(author.getValue().getId()));
-        columnName.setCellValueFactory(author-> new SimpleStringProperty(author.getValue().getName()));
-
+        columnID.setCellValueFactory(company -> new SimpleStringProperty(company.getValue().getId()));
+        columnName.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getName()));
+        columnID_General.setCellValueFactory(company-> new SimpleStringProperty(company.getValue().getGeneral().getId()));
 
     }
     @FXML
@@ -84,6 +95,6 @@ public class tabla_no_editable_General_Controller extends Controller implements 
     @FXML
     private void busquedaGeneral() throws IOException {
         App.currentController.openModal(Scenes.SEARCHGENERAL,"Eliminar un general...",this,null);
-        refresh();
+
     }
 }

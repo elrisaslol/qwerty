@@ -16,6 +16,7 @@ import org.example.model.entity.Unit;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -52,7 +53,12 @@ public class SearchGeneralController extends Controller implements Initializable
     }
 
     @FXML
-    private void closeWindow(Event event){
+    private void closeWindow(Event event) throws SQLException {
+        String key;
+
+        key=combo_ids.getValue().getId();
+
+        this.controller.searchGeneral(key);
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }
